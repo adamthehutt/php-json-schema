@@ -1,28 +1,5 @@
 {
-    "name": "justinrainbow/json-schema",
-    "description": "A library to validate a json schema.",
-    "keywords": ["json", "schema"],
-    "homepage": "https://github.com/justinrainbow/json-schema",
-    "type": "library",
-    "license": "BSD-3-Clause",
-    "authors": [
-        {
-            "name": "Bruno Prieto Reis",
-            "email": "bruno.p.reis@gmail.com"
-        },
-        {
-            "name": "Justin Rainbow",
-            "email": "justin.rainbow@gmail.com"
-        },
-        {
-            "name": "Igor Wiedler",
-            "email": "igor@wiedler.ch"
-        },
-        {
-            "name": "Robert Schönthal",
-            "email": "seroscho@googlemail.com"
-        }
-    ],
+    "name": "adamthehutt/php-json-schema",
     "repositories": [{
         "type": "package",
         "package": {
@@ -46,10 +23,5 @@
     "autoload": {
         "psr-0": { "JsonSchema": "src/" }
     },
-    "bin": ["bin/validate-json"],
-    "extra": {
-        "branch-alias": {
-            "dev-master": "1.4.x-dev"
-        }
-    }
+    "bin": ["bin/validate-json"]
 }
