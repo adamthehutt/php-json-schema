@@ -9,7 +9,7 @@
 
 namespace JsonSchema\Tests\Constraints;
 
-use JsonSchema\Constraints\Type;
+use JsonSchema\Constraints\TypeConstraint;
 
 /**
  * Class TypeTest
@@ -41,18 +41,18 @@ class TypeTest extends \PHPUnit_Framework_TestCase
      */
     public function testIndefiniteArticleForTypeInTypeCheckErrorMessage($type, $wording, $value = null, $label = 'NULL')
     {
-        $constraint = new Type();
+        $constraint = new TypeConstraint();
         $constraint->check($value, (object)array('type' => $type));
-        $this->assertTypeConstraintError("$label value found, but $wording $type is required", $constraint);
+        $this->assertTypeConstraintError(ucwords($label)." value found, but $wording $type is required", $constraint);
     }
 
     /**
      * Helper to assert an error message
      *
      * @param string $expected
-     * @param Type $actual
+     * @param TypeConstraint $actual
      */
-    private function assertTypeConstraintError($expected, Type $actual)
+    private function assertTypeConstraintError($expected, TypeConstraint $actual)
     {
         $actualErrors = $actual->getErrors();
 

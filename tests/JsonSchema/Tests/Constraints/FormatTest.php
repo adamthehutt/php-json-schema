@@ -9,7 +9,7 @@
 
 namespace JsonSchema\Tests\Constraints;
 
-use JsonSchema\Constraints\Format;
+use JsonSchema\Constraints\FormatConstraint;
 
 class FormatTest extends BaseTestCase
 {
@@ -17,10 +17,10 @@ class FormatTest extends BaseTestCase
     {
         date_default_timezone_set('UTC');
     }
-    
+
     public function testNullThing()
     {
-        $validator = new Format();
+        $validator = new FormatConstraint();
         $schema = new \stdClass;
 
         $validator->check('10', $schema);
@@ -29,7 +29,7 @@ class FormatTest extends BaseTestCase
 
     public function testRegex()
     {
-        $validator = new Format();
+        $validator = new FormatConstraint();
         $schema = new \stdClass;
         $schema->format = 'regex';
 
@@ -45,7 +45,7 @@ class FormatTest extends BaseTestCase
      */
     public function testValidFormat($string, $format)
     {
-        $validator = new Format();
+        $validator = new FormatConstraint();
         $schema = new \stdClass;
         $schema->format = $format;
 
@@ -58,7 +58,7 @@ class FormatTest extends BaseTestCase
      */
     public function testInvalidFormat($string, $format)
     {
-        $validator = new Format();
+        $validator = new FormatConstraint();
         $schema = new \stdClass;
         $schema->format = $format;
 
@@ -80,6 +80,7 @@ class FormatTest extends BaseTestCase
             array('2000-05-01T12:12:12+0100', 'date-time'),
             array('2000-05-01T12:12:12+01:00', 'date-time'),
             array('2000-05-01T12:12:12.123456Z', 'date-time'),
+            array('2000-05-01T12:12:12.123Z', 'date-time'),
 
             array('0', 'utc-millisec'),
 
@@ -118,6 +119,9 @@ class FormatTest extends BaseTestCase
             array('::ff', 'ipv6'),
 
             array('www.example.com', 'host-name'),
+
+            array('anything', '*'),
+            array('unknown', '*'),
         );
     }
 
@@ -159,7 +163,6 @@ class FormatTest extends BaseTestCase
 
             array('localhost', 'host-name'),
 
-            array('anything', '*'),
         );
     }
 

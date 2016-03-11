@@ -35,8 +35,9 @@ class AdditionalPropertiesTest extends BaseTestCase
                 null,
                 array(
                     array(
-                        'property' => '',
-                        'message'  => 'The property additionalProp is not defined and the definition does not allow additional properties'
+                        'property'   => '',
+                        'message'    => 'The property additionalProp is not defined and the definition does not allow additional properties',
+                        'constraint' => 'additionalProp',
                     )
                 )
             ),
@@ -80,7 +81,29 @@ class AdditionalPropertiesTest extends BaseTestCase
                   "additionalProperties": {"type":"string"}
                 }',
                 Validator::CHECK_MODE_TYPE_CAST
-            )
+            ),
+            array(
+                '{
+                  "prop1": "a",
+                  "prop2": "b"
+                }',
+                '{
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "boolean"
+                  }
+                }'
+            ),
+            array(
+                '{
+                  "prop1": "a",
+                  "prop2": "b"
+                }',
+                '{
+                  "type": "object",
+                  "additionalProperties": false
+                }'
+            ),
         );
     }
 
@@ -137,7 +160,29 @@ class AdditionalPropertiesTest extends BaseTestCase
                   },
                   "additionalProperties": true
                 }'
-            )
+            ),
+            array(
+                '{
+                  "prop1": "a",
+                  "prop2": "b"
+                }',
+                '{
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  }
+                }'
+            ),
+            array(
+                '{
+                  "prop1": "a",
+                  "prop2": "b"
+                }',
+                '{
+                  "type": "object",
+                  "additionalProperties": true
+                }'
+            ),
         );
     }
 }
