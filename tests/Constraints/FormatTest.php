@@ -81,6 +81,10 @@ class FormatTest extends BaseTestCase
             array('2000-05-01T12:12:12+01:00', 'date-time'),
             array('2000-05-01T12:12:12.123456Z', 'date-time'),
             array('2000-05-01T12:12:12.123Z', 'date-time'),
+            array('2000-05-01T12:12:12.123000Z', 'date-time'),
+            array('2000-05-01T12:12:12.0Z', 'date-time'),
+            array('2000-05-01T12:12:12.000Z', 'date-time'),
+            array('2000-05-01T12:12:12.000000Z', 'date-time'),
 
             array('0', 'utc-millisec'),
 
@@ -119,6 +123,9 @@ class FormatTest extends BaseTestCase
             array('::ff', 'ipv6'),
 
             array('www.example.com', 'host-name'),
+            array('3v4l.org', 'host-name'),
+            array('a-valid-host.com', 'host-name'),
+            array('localhost', 'host-name'),
 
             array('anything', '*'),
             array('unknown', '*'),
@@ -140,8 +147,8 @@ class FormatTest extends BaseTestCase
             array('1999-1-11T00:00:00Z', 'date-time'),
             array('1999-01-11T00:00:00+100', 'date-time'),
             array('1999-01-11T00:00:00+1:00', 'date-time'),
+            array('1999.000Z-01-11T00:00:00+1:00', 'date-time'),
 
-            array('-1', 'utc-millisec'),
             array(PHP_INT_MAX, 'utc-millisec'),
 
             array('grey', 'color'),
@@ -161,7 +168,8 @@ class FormatTest extends BaseTestCase
 
             array(':::ff', 'ipv6'),
 
-            array('localhost', 'host-name'),
+            array('@localhost', 'host-name'),
+            array('..nohost', 'host-name'),
 
         );
     }
